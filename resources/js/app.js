@@ -1,1 +1,12 @@
 import './bootstrap';
+
+// CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'admin-lte/dist/css/adminlte.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
+// JS
+import 'jquery';
+import 'popper.js';
+import 'bootstrap';
+import 'admin-lte';
