@@ -34,10 +34,10 @@ class StudentController extends Controller
     {
         //
         $request->validate([
-           'nis' => 'required|unique:students',
-           'nama_lengkap' => 'required',
-           'jenis_kelamin' => 'required',
-           'nisn' => 'required|unique:students', 
+            'nis' => 'required|unique:students',
+            'nama_lengkap' => 'required',
+            'jenis_kelamin' => 'required',
+            'nisn' => 'required|unique:students',
         ]);
 
         Student::create($request->all());
@@ -47,9 +47,10 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Student $student)
     {
         //
+        return view('admin.student.show', compact('student'));
     }
 
     /**
@@ -59,7 +60,6 @@ class StudentController extends Controller
     {
         //
         return view('admin.student.edit', compact('student'));
-
     }
 
     /**
@@ -74,7 +74,7 @@ class StudentController extends Controller
             'jenis_kelamin' => 'required',
             'nisn' => 'required',
         ]);
-        $student-> update($validated);
+        $student->update($validated);
         return redirect()->route('admin.students.index')->with('success', 'Data Siswa Berhasil Diubah');
     }
 
@@ -83,6 +83,14 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Cari siswa berdasarkan id, kalau tidak ditemukan akan error 404
+        $student = Student::findOrFail($id);
+
+        // Hapus data siswa
+        $student->delete();
+
+        // Redirect kembali ke halaman daftar siswa dengan pesan sukses
+        return redirect()->route('admin.students.index')
+            ->with('success', 'Data siswa berhasil dihapus.');
     }
 }
