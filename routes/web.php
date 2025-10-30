@@ -7,6 +7,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 Route::prefix('admin')->group(function () {
-
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin');
 });
