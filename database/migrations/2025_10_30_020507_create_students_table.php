@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nis')-> unique();
             $table->string('nama_lengkap');
             $table-> enum('jenis_kelamin', ['L', 'P']);
-            $table->date('nisn')->nullable();
+            $table->string('nisn')->nullable();
             $table->timestamps();
         });
     }
